@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -20,30 +24,11 @@
 <body>
     <div class="container">
         <h1>Inserisci il numero di caratteri che formerà la tua password da un minimo di 5 a un massimo di 5</h1>
-        <form class="my-5" action="">
-            <input type="number" name="length" id="length" min="5" max="50" />
+        <form class="my-5" action="./functions.php" method="get">
+            <input type="number" name="length" id="length" min="5" max="50" required />
             <button type="submit">Genera password</button>
         </form>
-        <?php
-        if (isset($_GET['length'])) {
-            $length = $_GET['length'];
-            $password = getRandomString($length);
-            echo "<h2>La tua password è: <strong>$password</strong></h2>";
-        }
-        function getRandomString($n)
-        {
-            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $randomString = '';
 
-            for ($i = 0; $i < $n; $i++) {
-                $index = random_int(0, strlen($characters) - 1);
-                $randomString .= $characters[$index];
-            }
-
-            return $randomString;
-        }
-
-        ?>
     </div>
     <script
         src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
